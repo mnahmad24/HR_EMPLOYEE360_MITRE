@@ -19,6 +19,7 @@ This demo proves how the MuleSoft api-led POV addresses this problem while being
 
 1. Clone this project
 2. Modify the src/main/resources/config.yaml with the correct credentials
+	a. Reach out to pub sec platform engineering team for necessary credentials for workday & sharepoint
 3. Run locally
 3. Call the APIs using postman
 	* Import the attached docs/employee_360_workday_sp_oracle.postman_collection.json into postman.
