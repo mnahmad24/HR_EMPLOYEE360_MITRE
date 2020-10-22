@@ -18,7 +18,8 @@ This demo proves how the MuleSoft api-led POV addresses this problem while being
 ## Getting Started
 
 1. Clone this project
-2. Modify the src/main/resources/config.yaml with the correct credentials. (_Reach out to pub sec platform engineering team for necessary credentials for workday & sharepoint_)
-3. Run locally
-3. Call the APIs using postman
+2. Create an Oracle19 instance and use the script at docs/oracle_data_script.sql to populate the database
+3. Modify the src/main/resources/config.yaml with the correct credentials. (_Reach out to pub sec platform engineering team for necessary credentials for workday & sharepoint_)
+4. Run locally
+5. Call the APIs using postman
 	* Import the attached docs/employee_360_workday_sp_oracle.postman_collection.json into postman.

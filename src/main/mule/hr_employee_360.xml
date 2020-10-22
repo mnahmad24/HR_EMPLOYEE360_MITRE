@@ -76,10 +76,10 @@ P.project_leader,
 P.tags AS PROJECT_TAGS,
 E.username,
 Prod.product_type,
-Prod.author,
+Prod.authorcreator,
 Prod.sensitivity,
 Prod.product_name,
-Prod.sponsor_marking,
+Prod.sponsor_markings,
 S.tags AS SKILL_TAGS
 from EMPLOYEES E, PROJECT_CHARGING PC, PRODUCTS Prod, SKILLS S, PROJECTS P
 where E.username = :username
