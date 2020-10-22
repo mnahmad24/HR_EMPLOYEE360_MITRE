@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:get-person="http://www.mulesoft.org/schema/mule/get-person" xmlns:sharepoint="http://www.mulesoft.org/schema/mule/sharepoint"
+	xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce" xmlns:workday="http://www.mulesoft.org/schema/mule/workday" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/workday http://www.mulesoft.org/schema/mule/workday/current/mule-workday.xsd
+http://www.mulesoft.org/schema/mule/salesforce http://www.mulesoft.org/schema/mule/salesforce/current/mule-salesforce.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/sharepoint http://www.mulesoft.org/schema/mule/sharepoint/current/mule-sharepoint.xsd
+http://www.mulesoft.org/schema/mule/get-person http://www.mulesoft.org/schema/mule/get-person/current/mule-get-person.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="034e38eb-4e19-4e54-8a3b-acaa2be96955" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<sharepoint:sharepoint-onpremise-config name="Sharepoint_Sharepoint_onpremise" doc:name="Sharepoint Sharepoint onpremise" doc:id="48dcaf36-0c68-44e8-b8bf-b8a9d1fd8125" >
+		<sharepoint:ntlm-connection domain="${sharepoint.domain}" ntlmUsername="${sharepoint.username}" ntlmPassword="${sharepoint.password}" siteUrl="${sharepoint.site}" />
+	</sharepoint:sharepoint-onpremise-config>
+	<workday:config-version-30-config name="Workday_Config_version_30" doc:name="Workday Config version 30" doc:id="cf28ca75-0e4a-4563-a149-47d475782294" >
+		<workday:basic-authentication-api-v30-connection username="${workday.username}" password="${workday.password}" tenantName="${workday.tenent}" hostName="${workday.host}" responseTimeout="50000"/>
+	</workday:config-version-30-config>
+	
+	<db:config name="Database_Config" doc:name="Database Config" doc:id="aa5c01b7-e402-4abb-b758-254444bee8d9" >
+		<db:oracle-connection host="${database.host}" port="${database.port}" user="${database.username}" password="${database.password}" instance="${database.sid}" />
+	</db:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="4e5b69ca-a824-43f7-affd-e1bd99d04bd3" file="config.yaml" />
+	<flow name="getWorkerFromWorkday" doc:id="a6139e72-66f2-48a5-8817-c791b8931091" >
+		<ee:transform doc:name="Create Workday SOAP Request" doc:id="e200441f-8aa4-4f7f-b39f-e18db4e6b7a1">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+ns ns0 urn:com.workday/bsvc
+output application/xml
+---
+{
+	ns0#Get_Workers_Request: {
+		ns0#Response_Group: {
+			ns0#Include_Management_Chain_Data: true,
+			ns0#Include_Skills: true,
+			ns0#Include_Personal_Information: true,
+			ns0#Include_Employment_Information: true,
+			ns0#Include_Talent_Assessment: true
+		},
+		ns0#Request_References: {
+			ns0#Worker_Reference: {
+				ns0#ID @(ns0#"type": 'Employee_ID'): attributes.uriParams.employee_id
+			}
+		}
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<workday:human-resources doc:name="Retrieve A Worker by EmployeeID From Workday" doc:id="2b4fef06-5330-4a2a-890d-77b73b173282" config-ref="Workday_Config_version_30" operation="Get_Workers" />
+		<ee:transform doc:name="Transform XML to JSON for EmployeeData" doc:id="5f5d7acc-2a5a-4ea7-b851-37db582df4fe">
+			<ee:message>
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+ns ns0 urn:com.workday/bsvc
+---
+payload.ns0#Get_Workers_Response.ns0#Response_Data
+
+
+
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="getProjectDetailsFromOracle" doc:id="f1eee5e0-e490-4f7c-85bd-97eb2a5b8722" >
+		<set-variable value="#[output text/plain
+---
+trim(attributes.uriParams.employee_id default vars.username) as String]" doc:name="Set Username" doc:id="c4ca82de-1552-4b23-9af1-3e1908cd399b" variableName="employee_username"/>
+		<db:select doc:name="SELECT all data from Oracle for given employee" doc:id="9d146c7b-e7d5-404a-8abe-da54b0a3aa03" config-ref="Database_Config">
+			<db:sql ><![CDATA[SELECT 
+PC.project_number, 
+P.portfolio_name,
+P.project_leader,
+P.tags AS PROJECT_TAGS,
+E.username,
+Prod.product_type,
+Prod.author,
+Prod.sensitivity,
+Prod.product_name,
+Prod.sponsor_marking,
+S.tags AS SKILL_TAGS
+from EMPLOYEES E, PROJECT_CHARGING PC, PRODUCTS Prod, SKILLS S, PROJECTS P
+where E.username = :username
+AND PC.username like :username_in_pc
+AND Prod.project_number = PC.project_number
+AND S.username = E.username
+AND P.project_number = PC.project_number]]></db:sql>
+			<db:input-parameters ><![CDATA[#[{"username": vars.employee_username, 
+"username_in_pc": "%" ++ vars.employee_username ++ '%'}]]]></db:input-parameters>
+		</db:select>
+		<ee:transform doc:name="Transform Message" doc:id="e00129b0-94bc-47db-90c5-4c94a0b4ab40">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+import * from dw::util::Values
+output application/json
+---
+payload[0] update field("SKILL_TAGS") with ((payload[0].SKILL_TAGS as String) default '' splitBy   '    ')]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="ProjectDetailsSite2API" doc:id="bc7815bc-9250-4a59-a8f6-d5be350e2865" >
+		<sharepoint:list-item-query doc:id="1e3f84ab-cfab-40d6-8935-03de03e28637" config-ref="Sharepoint_Sharepoint_onpremise" target="mitre1_items" doc:name="Get Project" >
+			<sharepoint:query ><![CDATA[bc4cf7ea-fbb6-48d1-ac2c-d0efe0b3a536?$select=*]]></sharepoint:query>
+		</sharepoint:list-item-query>
+		<sharepoint:list-item-query doc:id="07fc5ee5-bdbb-41d8-bb44-3ba87fae838c" config-ref="Sharepoint_Sharepoint_onpremise" target="mitre_tasks" doc:name="Lookup Fiscal Year" >
+			<sharepoint:query ><![CDATA[8827d6a5-a09e-47de-92f1-41ee93708e1f?$select=*]]></sharepoint:query>
+		</sharepoint:list-item-query>
+		<ee:transform doc:name="Transfrom to JSON" doc:id="5deb1c8c-96b8-4a0c-8b56-467d96cfb80e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+vars.mitre1_items map ((item, index) -> 
+    { 
+        contact_person: item.contact_person.Url,
+        creator_ids: item.gqwh,
+        Creators: item.phoa,
+        project_number: item.OData__x0074_k90,
+        fiscal_year: (vars.mitre_tasks filter (item.task_fiscal_yearId.id == $.ID))[0].Title
+    }
+) ]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="mitre1_items" ><![CDATA[%dw 2.0
+output application/java
+---
+payload]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+	</flow>
+	<flow name="ProjectDetailsSite1API" doc:id="4743864b-64fa-423f-8e57-2964943f3183" >
+		<sharepoint:list-item-query doc:id="5d524a03-2771-4c6f-935f-b896b3261548" config-ref="Sharepoint_Sharepoint_onpremise" target="mitre2_items" doc:name="Get Project" >
+			<sharepoint:query ><![CDATA[c18c2235-f03e-49d8-8817-41a870b90d43?$select=*]]></sharepoint:query>
+		</sharepoint:list-item-query>
+		<ee:transform doc:name="Transform to JSON" doc:id="19dced22-7eab-4f71-a58d-0057c2a96cd4" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+vars.mitre2_items map ((item, index) -> 
+    { 
+        contact_person: item.mcgg,
+        creator_ids: item.OData__x0066_jo7,
+        Creators: item.creator_names,
+        fiscal_year: item.FiscalYear,
+        project_number: item.OData__x0066_g17
+    }
+) ]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="mitre1_items" ><![CDATA[%dw 2.0
+output application/java
+---
+payload]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+	</flow>
+	<flow name="ProjectAPI" doc:id="e4b7ebec-2b45-4420-b647-bed6379269ff" >
+		<scatter-gather doc:name="Copy_of_Scatter-Gather" doc:id="85eab895-2df9-43ea-b68d-4f0ec983d907" >
+			<route >
+				<flow-ref doc:name="Get Proj. From SP Site1" doc:id="ad6d8f1b-971f-4206-b058-c14acd805e18" name="ProjectDetailsSite1API" />
+			</route>
+			<route >
+				<flow-ref doc:name="Get Proj. From SP Site 2" doc:id="c9c3e71c-18aa-4e56-ba74-078a6a3276fc" name="ProjectDetailsSite2API" />
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Transform Data to Customer Requirements" doc:id="a9f2389c-3a22-40a7-a513-c9ea46e9a0cb" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
+import * from dw::core::Strings
+output application/json
+---
+join(payload[0].payload, payload[1].payload, 
+	(project) -> substringBefore(project.project_number, "-"), 
+	(project2) -> "0" ++ project2.project_number) 
+	map ((item, index) -> 
+{
+    contact_person: lower(substringAfter(item.r.contact_person, " ")[0]) ++ 
+		lower(substringAfter(substringAfter(item.r.contact_person, " "), " ")[0]) ++
+		" " ++  
+		lower(substringBefore(item.r.contact_person, ",")[0 to 4]),
+
+  	creator_ids: if (item.l.creator_ids == item.r.creator_ids) item.l.creator_ids 
+  		else item.l.creator_ids ++ "," ++ item.r.creator_ids,
+
+  	fiscal_year: item.l.fiscal_year[(sizeOf(item.l.fiscal_year) - 2) to 
+  		sizeOf(item.l.fiscal_year) -1
+  	],
+
+    creators: lower(substringAfter(item.r.Creators, ",")[1]) ++ ". " ++ 
+    	substringBefore(item.r.Creators, ","),
+
+    project_number: substringBefore(item.l.project_number, "-")
+}
+)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="Employee360API" doc:id="fec8a01a-8b97-4d0b-be15-1ac450270e7f" >
+		<flow-ref doc:name="Get Employee from Workday" doc:id="6f869259-db9e-43d3-af32-84014067a945" name="getWorkerFromWorkday" />
+		<set-variable value="#[payload]" doc:name="Set Variable" doc:id="24b04e66-b93e-4e3c-a9c0-5f487c36880c" variableName="worker"/>
+		<set-variable doc:name="Set Employee Username" doc:id="1e4e59f8-10d3-4c18-84fa-45efe52c8b48" variableName="username" value="#[vars.worker.Worker.Worker_Data.User_ID]"/>
+		<scatter-gather doc:name="Scatter-Gather" doc:id="80f6c28d-9be1-47ad-8913-ade13893cf9c" >
+			<route >
+				<set-payload value="#[vars.worker]" doc:name="Set Payload" doc:id="d0f91353-e3d5-449a-8c41-5577d1a38129" />
+			</route>
+			<route >
+				<flow-ref doc:name="Get Employee And Project Details from Oracle" doc:id="641f85fa-2230-495f-bcbe-626a09bf9cbf" name="getProjectDetailsFromOracle"/>
+			</route>
+			<route >
+				<flow-ref doc:name="Get Project Details from Sharepoint" doc:id="f8e34c07-9393-4495-a908-6e5480e2c605" name="ProjectAPI"/>
+			</route>
+		</scatter-gather>
+		<ee:transform doc:name="Transform Message" doc:id="2c74e3c8-be81-4cc3-b753-ea10fe0041ab">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	employee_first_name: payload."0".payload.Worker.Worker_Data.Personal_Data.Name_Data.Legal_Name_Data.Name_Detail_Data.First_Name,
+	employee_last_name: payload."0".payload.Worker.Worker_Data.Personal_Data.Name_Data.Legal_Name_Data.Name_Detail_Data.Last_Name,
+	employee_id: payload."0".payload.Worker.Worker_Data.Worker_ID as Number,
+	employee_user_name: payload."0".payload.Worker.Worker_Data.User_ID,
+	project: {
+		project_number: payload."1".payload.PROJECT_NUMBER as String,
+		project_leader: payload."1".payload.PROJECT_LEADER,
+		PRODUCT_TYPE: payload."1".payload.PRODUCT_TYPE default "",
+		SPONSOR_MARKING: payload."1".payload.SPONSOR_MARKING,
+		portfolio_name: payload."1".payload.PORTFOLIO_NAME,
+		sensitivity: payload."1".payload.SENSITIVITY,
+		creators: payload."2".payload[0].creators as String,
+		fiscal_year: payload."2".payload[0].fiscal_year as Number,
+		contact_person: payload."2".payload[0].contact_person as String,
+		creator_ids: payload."2".payload[0].creator_ids as String
+	},
+	address: {
+		country: vars.worker.Worker.Worker_Data.Personal_Data.Contact_Data.Phone_Data.Country_ISO_Code,
+		region: vars.worker.Worker.Worker_Data.Personal_Data.Contact_Data.Address_Data.Country_Region_Descriptor
+	},
+	position: payload."0".payload.Worker.Worker_Data.Employment_Data.Worker_Job_Data.Position_Data.Position_Title,
+	manager: (vars.worker.Worker.Worker_Data.Employment_Data.Worker_Job_Data.Position_Data.Manager_as_of_last_detected_manager_change_Reference pluck $)[1],
+	skills: payload."1".payload.SKILL_TAGS
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="EmployeeMobile360API" doc:id="7b9c7733-1a40-4871-9098-ce2af3ba99eb" >
+		<flow-ref doc:name="Flow Reference" doc:id="81c85f4f-9898-4199-9f0a-a1ab533f8f45" name="Employee360API"/>
+		<ee:transform doc:name="Transform Message" doc:id="34eda944-b272-4401-acdd-f18e8c839c26" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"first_name": payload.employee_first_name,
+	"last_name": payload.employee_last_name,
+	"employee_id" : payload.employee_id
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
