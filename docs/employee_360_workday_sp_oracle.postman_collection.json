@@ -9,23 +9,7 @@
 			"name": "Mobile Employee360 API",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "admin",
-						"value": "false",
-						"type": "text"
-					},
-					{
-						"key": "client_id",
-						"value": "2ada5756dd9042308c467bdd557474ba",
-						"type": "text"
-					},
-					{
-						"key": "client_secret",
-						"value": "0Af988853ba245818304DCA94F04455A",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://{{url}}/mobile/getPerson/35414",
 					"protocol": "http",
@@ -45,23 +29,7 @@
 			"name": "Employee360 API",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "admin",
-						"value": "false",
-						"type": "text"
-					},
-					{
-						"key": "client_id",
-						"value": "2ada5756dd9042308c467bdd557474ba",
-						"type": "text"
-					},
-					{
-						"key": "client_secret",
-						"value": "0Af988853ba245818304DCA94F04455A",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://{{url}}/getPerson/35439",
 					"protocol": "http",
@@ -80,23 +48,7 @@
 			"name": "System - Workday",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "admin",
-						"value": "false",
-						"type": "text"
-					},
-					{
-						"key": "client_id",
-						"value": "2ada5756dd9042308c467bdd557474ba",
-						"type": "text"
-					},
-					{
-						"key": "client_secret",
-						"value": "0Af988853ba245818304DCA94F04455A",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://{{url}}/workers/35439",
 					"protocol": "http",
@@ -115,23 +67,7 @@
 			"name": "System - Oracle",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "admin",
-						"value": "false",
-						"type": "text"
-					},
-					{
-						"key": "client_id",
-						"value": "2ada5756dd9042308c467bdd557474ba",
-						"type": "text"
-					},
-					{
-						"key": "client_secret",
-						"value": "0Af988853ba245818304DCA94F04455A",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://{{url}}/employee/twillis",
 					"protocol": "http",
@@ -150,23 +86,7 @@
 			"name": "System - Sharepoint",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "admin",
-						"value": "false",
-						"type": "text"
-					},
-					{
-						"key": "client_id",
-						"value": "2ada5756dd9042308c467bdd557474ba",
-						"type": "text"
-					},
-					{
-						"key": "client_secret",
-						"value": "0Af988853ba245818304DCA94F04455A",
-						"type": "text"
-					}
-				],
+				"header": [],
 				"url": {
 					"raw": "http://{{url}}/getSPProject",
 					"protocol": "http",
@@ -205,7 +125,7 @@
 	],
 	"variable": [
 		{
-			"id": "30503e18-55d8-4cbf-bd71-edce3d9b334e",
+			"id": "93b82718-8ca3-44d9-b6b7-ba2ea7be2ea8",
 			"key": "url",
 			"value": "localhost:8081"
 		}
