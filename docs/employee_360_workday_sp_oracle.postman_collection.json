@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "45ad5675-c82e-468a-be59-6d97495f6237",
+		"name": "employee_360_workday_sp_oracle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Mobile Employee360 API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "admin",
+						"value": "false",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "2ada5756dd9042308c467bdd557474ba",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "0Af988853ba245818304DCA94F04455A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}/mobile/getPerson/35414",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"mobile",
+						"getPerson",
+						"35414"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Employee360 API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "admin",
+						"value": "false",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "2ada5756dd9042308c467bdd557474ba",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "0Af988853ba245818304DCA94F04455A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}/getPerson/35439",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getPerson",
+						"35439"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System - Workday",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "admin",
+						"value": "false",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "2ada5756dd9042308c467bdd557474ba",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "0Af988853ba245818304DCA94F04455A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}/workers/35439",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"workers",
+						"35439"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System - Oracle",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "admin",
+						"value": "false",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "2ada5756dd9042308c467bdd557474ba",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "0Af988853ba245818304DCA94F04455A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}/employee/twillis",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"employee",
+						"twillis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "System - Sharepoint",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "admin",
+						"value": "false",
+						"type": "text"
+					},
+					{
+						"key": "client_id",
+						"value": "2ada5756dd9042308c467bdd557474ba",
+						"type": "text"
+					},
+					{
+						"key": "client_secret",
+						"value": "0Af988853ba245818304DCA94F04455A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}/getSPProject",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getSPProject"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "84391dbc-c299-434b-b643-b041ce7c2368",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "32dede8d-cfd4-40d5-8eb6-fd76dedec084",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "30503e18-55d8-4cbf-bd71-edce3d9b334e",
+			"key": "url",
+			"value": "localhost:8081"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
