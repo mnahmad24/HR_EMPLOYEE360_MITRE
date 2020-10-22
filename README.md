@@ -6,7 +6,7 @@ This use case addresses the common Employee360 problem. Our customer had employe
 This demo proves how the MuleSoft api-led POV addresses this problem while being faster to deployment, and providing a future proof architecture.
 
 ### Architectural Overview
-*Insert Image*
+![Image of Employee360 Arch](./docs/Employee360_Arch.png)
 
 
 ## Getting Started
