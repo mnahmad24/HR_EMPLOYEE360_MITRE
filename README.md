@@ -1,10 +1,11 @@
 # HR_EMPLOYEE360_MITRE
 
 ### Status
-_In Construction_
-* To Do:
-	- Need to provide a SQL script to autopopulate Oracle DB 
-	
+```diff
+- In Construction
+
+! Need to provide a SQL script to autopopulate Oracle DB 
+```
 ## Overview
 This use case addresses the common Employee360 problem. Our customer had employee data stored across various systems. These were; Workday, Sharepoint, and Oracle DBs. A digital transformation initiative was underway to optimize employee utilization against ongoing and new projects. To do so, the customer needed a way to consolidate the employee data stored across various systems and create a single source of truth, the Employee360.  
 
