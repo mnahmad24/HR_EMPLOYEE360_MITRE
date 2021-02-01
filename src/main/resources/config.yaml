@@ -1,0 +1,18 @@
+sharepoint:
+  domain: "DOMAIN"
+  username: "USER"
+  password: "PASS"
+  site: "SITE"
+  
+database:
+  host: "HOST"
+  port: "PORT"
+  username: "USER"
+  password: "PASS"
+  sid: "SID"
+
+workday:
+  username: "USER"
+  password: "PASS"
+  tenent: "TENENT"
+  host: "HOST"

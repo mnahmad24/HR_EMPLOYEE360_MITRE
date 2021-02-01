@@ -1,0 +1,521 @@
+{
+  "Worker": {
+    "Worker_Data": {
+      "Worker_ID": "35414",
+      "User_ID": "twillis",
+      "Personal_Data": {
+        "Name_Data": {
+          "Legal_Name_Data": {
+            "Name_Detail_Data": {
+              "Country_Reference": {
+                "ID": "bc33aa3152ec42d4995f4791a106ed09",
+                "ID": "US",
+                "ID": "USA",
+                "ID": "840"
+              },
+              "First_Name": "TEST_Bruce",
+              "Last_Name": "Willis"
+            }
+          },
+          "Preferred_Name_Data": {
+            "Name_Detail_Data": {
+              "Country_Reference": {
+                "ID": "bc33aa3152ec42d4995f4791a106ed09",
+                "ID": "US",
+                "ID": "USA",
+                "ID": "840"
+              },
+              "First_Name": "TEST_Bruce",
+              "Last_Name": "Willis"
+            }
+          }
+        },
+        "Hispanic_or_Latino": "0",
+        "Contact_Data": {
+          "Address_Data": {
+            "Country_Reference": {
+              "ID": "bc33aa3152ec42d4995f4791a106ed09",
+              "ID": "US",
+              "ID": "USA",
+              "ID": "840"
+            },
+            "Last_Modified": "2011-06-20T13:54:02.023-07:00",
+            "Address_Line_Data": "3939 The Embarcadero",
+            "Municipality": "San Francisco",
+            "Country_Region_Reference": {
+              "ID": "ec3d210e4240442e99a28fa70419aec5",
+              "ID": "USA-CA",
+              "ID": "CA"
+            },
+            "Country_Region_Descriptor": "California",
+            "Postal_Code": "94111",
+            "Usage_Data": {
+              "Type_Data": {
+                "Type_Reference": {
+                  "ID": "1f27f250dfaa4724ab1e1617174281e4",
+                  "ID": "WORK"
+                }
+              }
+            },
+            "Number_of_Days": "0",
+            "Address_Reference": {
+              "ID": "d77b39b882ec495daed85c9f94876283",
+              "ID": "ADDRESS_REFERENCE-4-640"
+            },
+            "Address_ID": "ADDRESS_REFERENCE-4-640"
+          },
+          "Address_Data": {
+            "Country_Reference": {
+              "ID": "bc33aa3152ec42d4995f4791a106ed09",
+              "ID": "US",
+              "ID": "USA",
+              "ID": "840"
+            },
+            "Last_Modified": "2019-12-18T11:53:37.148-08:00",
+            "Address_Line_Data": "MainStreet 1",
+            "Municipality": "Beverly Hills",
+            "Country_Region_Reference": {
+              "ID": "ec3d210e4240442e99a28fa70419aec5",
+              "ID": "USA-CA",
+              "ID": "CA"
+            },
+            "Country_Region_Descriptor": "California",
+            "Postal_Code": "90210",
+            "Usage_Data": {
+              "Type_Data": {
+                "Type_Reference": {
+                  "ID": "836cf00ef5974ac08b786079866c946f",
+                  "ID": "HOME"
+                }
+              }
+            },
+            "Number_of_Days": "0",
+            "Address_Reference": {
+              "ID": "529f3858959d10167d53a066da2d460d",
+              "ID": "ADDRESS_REFERENCE-6-7526"
+            },
+            "Address_ID": "ADDRESS_REFERENCE-6-7526"
+          },
+          "Phone_Data": {
+            "Country_ISO_Code": "USA",
+            "International_Phone_Code": "1",
+            "Phone_Number": "653-4555",
+            "Phone_Device_Type_Reference": {
+              "ID": "3014da0ed66f41a3b88085b19175300e",
+              "ID": "1063.5"
+            },
+            "Usage_Data": {
+              "Type_Data": {
+                "Type_Reference": {
+                  "ID": "836cf00ef5974ac08b786079866c946f",
+                  "ID": "HOME"
+                }
+              }
+            },
+            "Phone_Reference": {
+              "ID": "86b19b6d4ea201ab2ed25224fd62331c",
+              "ID": "PHONE_REFERENCE-6-7164"
+            },
+            "ID": "PHONE_REFERENCE-6-7164"
+          },
+          "Email_Address_Data": {
+            "Email_Address": "john.smith329@noname.com",
+            "Usage_Data": {
+              "Type_Data": {
+                "Type_Reference": {
+                  "ID": "836cf00ef5974ac08b786079866c946f",
+                  "ID": "HOME"
+                }
+              }
+            },
+            "Email_Reference": {
+              "ID": "bd2b41f2ae17012ae1334c800a30a903",
+              "ID": "EMAIL_REFERENCE-6-49579"
+            },
+            "ID": "EMAIL_REFERENCE-6-49579"
+          }
+        },
+        "Tobacco_Use": "0"
+      },
+      "Employment_Data": {
+        "Worker_Job_Data": {
+          "Position_Data": {
+            "Position_Reference": {
+              "ID": "529f3858959d10167d53ac7326f14623",
+              "ID": "P-23410"
+            },
+            "Position_ID": "P-23410",
+            "Position_Title": "Engineer",
+            "Business_Title": "Engineer",
+            "Start_Date": "2017-02-27-08:00",
+            "Worker_Type_Reference": {
+              "ID": "9459f5e6f1084433b767c7901ec04416",
+              "ID": "Regular"
+            },
+            "Position_Time_Type_Reference": {
+              "ID": "900fa8d9ae6f45a0a788545a85878f40",
+              "ID": "Full_time"
+            },
+            "Job_Exempt": "1",
+            "Scheduled_Weekly_Hours": "40",
+            "Default_Weekly_Hours": "40",
+            "Working_Time_Value": "0",
+            "Full_Time_Equivalent_Percentage": "100",
+            "Exclude_from_Headcount": "0",
+            "Pay_Rate_Type_Reference": {
+              "ID": "bbecf03d42c34e34a6e084b2d271b88b",
+              "ID": "Salary"
+            },
+            "Job_Classification_Summary_Data": {
+              "Job_Classification_Reference": {
+                "ID": "d8a805265ee9498baa272a3ce70639d9",
+                "ID": "221.3"
+              },
+              "Job_Group_Reference": {
+                "ID": "be4f171eca7a484983b9bc530a22e594"
+              }
+            },
+            "Federal_Withholding_FEIN": "99-0343105",
+            "Worker_Compensation_Code_Data": {
+              "Workers_Compensation_Code_Reference": {
+                "ID": "b3d930f0fc714b00aa1442a23060ad89",
+                "ID": "8810"
+              },
+              "Workers_Compensation_Code": "8810"
+            },
+            "Job_Profile_Summary_Data": {
+              "Job_Profile_Reference": {
+                "ID": "d588d86df2f241aca0985ce5c0e7a09b",
+                "ID": "39905"
+              },
+              "Job_Exempt": "1",
+              "Management_Level_Reference": {
+                "ID": "7a379eea3b0c4a10a2b50663b2bd15e4",
+                "ID": "8_Individual_Contributor"
+              },
+              "Job_Family_Reference": {
+                "ID": "25177fb82ead433ba46a27f9d787de56",
+                "ID": "OPS-Program Management"
+              },
+              "Job_Profile_Name": "Program Manager",
+              "Work_Shift_Required": "0",
+              "Critical_Job": "0",
+              "Difficulty_to_Fill_Reference": {
+                "ID": "4dec62150dd3487fbce23d10288374cd",
+                "ID": "HARD"
+              }
+            },
+            "Business_Site_Summary_Data": {
+              "Location_Reference": {
+                "ID": "d13a7c46a06443c4a33c09afbdf72c73",
+                "ID": "San_Francisco_site"
+              },
+              "Name": "San Francisco",
+              "Location_Type_Reference": {
+                "ID": "875dcdb9d640404795024f29691ed82b",
+                "ID": "334.4"
+              },
+              "Local_Reference": {
+                "ID": "d9e43b02446c11de98360015c5e6daf6",
+                "ID": "en_US"
+              },
+              "Time_Profile_Reference": {
+                "ID": "e57d85ad0fed4ff390953935e2873466",
+                "ID": "344.1"
+              },
+              "Scheduled_Weekly_Hours": "40",
+              "Address_Data": {
+                "Country_Reference": {
+                  "ID": "bc33aa3152ec42d4995f4791a106ed09",
+                  "ID": "US",
+                  "ID": "USA",
+                  "ID": "840"
+                },
+                "Last_Modified": "2011-06-20T13:54:02.023-07:00",
+                "Address_Line_Data": "3939 The Embarcadero",
+                "Municipality": "San Francisco",
+                "Country_Region_Reference": {
+                  "ID": "ec3d210e4240442e99a28fa70419aec5",
+                  "ID": "USA-CA",
+                  "ID": "CA"
+                },
+                "Country_Region_Descriptor": "California",
+                "Postal_Code": "94111",
+                "Usage_Data": {
+                  "Type_Data": {
+                    "Type_Reference": {
+                      "ID": "4fae289a7fe541b098ca9448e462ff6b",
+                      "ID": "BUSINESS"
+                    }
+                  },
+                  "Use_For_Reference": {
+                    "ID": "f785430145674364a613cd56086942c4",
+                    "ID": "STREET"
+                  },
+                  "Use_For_Reference": {
+                    "ID": "7a232f5736a840a393b8ab43df7becd5",
+                    "ID": "BILLING"
+                  },
+                  "Use_For_Reference": {
+                    "ID": "b58a4a54e04c4e1f8fc32bfc3b1a77cf",
+                    "ID": "SHIPPING"
+                  },
+                  "Use_For_Reference": {
+                    "ID": "9385649a0c4b4ddea7fb0d823c2f1bcd",
+                    "ID": "MAILING"
+                  },
+                  "Use_For_Reference": {
+                    "ID": "8f470e4f6ffd49638c80ea6b5443bddb",
+                    "ID": "REMIT"
+                  },
+                  "Use_For_Tenanted_Reference": {
+                    "ID": "041d606550cc1069b52bb68ff8f39b99",
+                    "ID": "COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-14"
+                  },
+                  "Use_For_Tenanted_Reference": {
+                    "ID": "041d606550cc1069b52bb68a34639b97",
+                    "ID": "COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-12"
+                  },
+                  "Use_For_Tenanted_Reference": {
+                    "ID": "041d606550cc1069b52bb68756039b96",
+                    "ID": "COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-11"
+                  },
+                  "Use_For_Tenanted_Reference": {
+                    "ID": "041d606550cc1069b52bb68487439b95",
+                    "ID": "COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-10"
+                  },
+                  "Use_For_Tenanted_Reference": {
+                    "ID": "041d606550cc1069b52bb681b8839b94",
+                    "ID": "COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-9"
+                  }
+                },
+                "Number_of_Days": "0",
+                "Address_Reference": {
+                  "ID": "d77b39b882ec495daed85c9f94876283",
+                  "ID": "ADDRESS_REFERENCE-4-640"
+                },
+                "Address_ID": "ADDRESS_REFERENCE-4-640"
+              }
+            },
+            "Manager_as_of_last_detected_manager_change_Reference": {
+              "ID": "aa6a6215d8684b3781139df029fbd57f",
+              "ID": "21027"
+            }
+          },
+          "Position_Management_Chains_Data": {
+            "Position_Supervisory_Management_Chain_Data": {
+              "Management_Chain_Data": {
+                "Organization_Reference": {
+                  "ID": "ef7a0ad4065e47bf83cb076399fc1dcc",
+                  "ID": "Global_Modern_Services_supervisory"
+                },
+                "Manager_Reference": {
+                  "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                  "ID": "21002"
+                },
+                "Manager": {
+                  "Worker_Reference": {
+                    "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                    "ID": "21002"
+                  },
+                  "Worker_Descriptor": "Steve Morgan"
+                }
+              },
+              "Management_Chain_Data": {
+                "Organization_Reference": {
+                  "ID": "9378b36dabd94cc391ef5392166aa00e",
+                  "ID": "Executive_Management_supervisory"
+                },
+                "Manager_Reference": {
+                  "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                  "ID": "21002"
+                },
+                "Manager": {
+                  "Worker_Reference": {
+                    "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                    "ID": "21002"
+                  },
+                  "Worker_Descriptor": "Steve Morgan"
+                }
+              },
+              "Management_Chain_Data": {
+                "Organization_Reference": {
+                  "ID": "1ad7d37487904a989b2db1bfa6fed57d",
+                  "ID": "Finance_Administration_supervisory"
+                },
+                "Manager_Reference": {
+                  "ID": "26c439a5deed4a7dbab76709e0d2d2ca",
+                  "ID": "21005"
+                },
+                "Manager": {
+                  "Worker_Reference": {
+                    "ID": "26c439a5deed4a7dbab76709e0d2d2ca",
+                    "ID": "21005"
+                  },
+                  "Worker_Descriptor": "Teresa Serrano"
+                }
+              },
+              "Management_Chain_Data": {
+                "Organization_Reference": {
+                  "ID": "7ce1ede7c4024ee3b5390564bb81c3d0",
+                  "ID": "Office_of_the_Controller"
+                },
+                "Manager_Reference": {
+                  "ID": "aa6a6215d8684b3781139df029fbd57f",
+                  "ID": "21027"
+                },
+                "Manager": {
+                  "Worker_Reference": {
+                    "ID": "aa6a6215d8684b3781139df029fbd57f",
+                    "ID": "21027"
+                  },
+                  "Worker_Descriptor": "Noah Pierce"
+                }
+              },
+              "Management_Chain_Data": {
+                "Organization_Reference": {
+                  "ID": "1aa02e10bc58421ab8c1236ab5c01d79",
+                  "ID": "SEC_Reporting_supervisory"
+                },
+                "Manager_Reference": {
+                  "ID": "aa6a6215d8684b3781139df029fbd57f",
+                  "ID": "21027"
+                },
+                "Manager": {
+                  "Worker_Reference": {
+                    "ID": "aa6a6215d8684b3781139df029fbd57f",
+                    "ID": "21027"
+                  },
+                  "Worker_Descriptor": "Noah Pierce"
+                }
+              }
+            }
+          }
+        },
+        "Worker_Status_Data": {
+          "Active": "1",
+          "Active_Status_Date": "2017-02-27-08:00",
+          "Hire_Date": "2017-02-27-08:00",
+          "Original_Hire_Date": "2017-02-27-08:00",
+          "Hire_Reason_Reference": {
+            "ID": "269462718b474db8bcbdd5789ccf1a20",
+            "ID": "Hire_Employee_New_Hire_Fill_Vacancy",
+            "ID": "Hire_Employee_New_Hire_Fill_Vacancy"
+          },
+          "Continuous_Service_Date": "2017-02-27-08:00",
+          "First_Day_of_Work": "2017-02-27-08:00",
+          "Retired": "0",
+          "Seniority_Date": "2017-02-27-08:00",
+          "Days_Unemployed": "0",
+          "Months_Continuous_Prior_Employment": "0",
+          "Terminated": "0",
+          "Not_Eligible_for_Hire": "0",
+          "Regrettable_Termination": "0",
+          "Not_Eligible_for_Rehire": "0",
+          "Hire_Rescinded": "0",
+          "Not_Returning": "0",
+          "Return_Unknown": "0",
+          "Rehire": "0"
+        },
+        "International_Assignment_Summary_Data": {
+          "Has_International_Assignment": "0",
+          "Home_Country_Reference": {
+            "ID": "bc33aa3152ec42d4995f4791a106ed09",
+            "ID": "US",
+            "ID": "USA",
+            "ID": "840"
+          }
+        }
+      },
+      "Management_Chain_Data": {
+        "Worker_Supervisory_Management_Chain_Data": {
+          "Management_Chain_Data": {
+            "Organization_Reference": {
+              "ID": "ef7a0ad4065e47bf83cb076399fc1dcc",
+              "ID": "Global_Modern_Services_supervisory"
+            },
+            "Manager_Reference": {
+              "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+              "ID": "21002"
+            },
+            "Manager": {
+              "Worker_Reference": {
+                "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                "ID": "21002"
+              },
+              "Worker_Descriptor": "Steve Morgan"
+            }
+          },
+          "Management_Chain_Data": {
+            "Organization_Reference": {
+              "ID": "9378b36dabd94cc391ef5392166aa00e",
+              "ID": "Executive_Management_supervisory"
+            },
+            "Manager_Reference": {
+              "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+              "ID": "21002"
+            },
+            "Manager": {
+              "Worker_Reference": {
+                "ID": "0e44c92412d34b01ace61e80a47aaf6d",
+                "ID": "21002"
+              },
+              "Worker_Descriptor": "Steve Morgan"
+            }
+          },
+          "Management_Chain_Data": {
+            "Organization_Reference": {
+              "ID": "1ad7d37487904a989b2db1bfa6fed57d",
+              "ID": "Finance_Administration_supervisory"
+            },
+            "Manager_Reference": {
+              "ID": "26c439a5deed4a7dbab76709e0d2d2ca",
+              "ID": "21005"
+            },
+            "Manager": {
+              "Worker_Reference": {
+                "ID": "26c439a5deed4a7dbab76709e0d2d2ca",
+                "ID": "21005"
+              },
+              "Worker_Descriptor": "Teresa Serrano"
+            }
+          },
+          "Management_Chain_Data": {
+            "Organization_Reference": {
+              "ID": "7ce1ede7c4024ee3b5390564bb81c3d0",
+              "ID": "Office_of_the_Controller"
+            },
+            "Manager_Reference": {
+              "ID": "aa6a6215d8684b3781139df029fbd57f",
+              "ID": "21027"
+            },
+            "Manager": {
+              "Worker_Reference": {
+                "ID": "aa6a6215d8684b3781139df029fbd57f",
+                "ID": "21027"
+              },
+              "Worker_Descriptor": "Noah Pierce"
+            }
+          },
+          "Management_Chain_Data": {
+            "Organization_Reference": {
+              "ID": "1aa02e10bc58421ab8c1236ab5c01d79",
+              "ID": "SEC_Reporting_supervisory"
+            },
+            "Manager_Reference": {
+              "ID": "aa6a6215d8684b3781139df029fbd57f",
+              "ID": "21027"
+            },
+            "Manager": {
+              "Worker_Reference": {
+                "ID": "aa6a6215d8684b3781139df029fbd57f",
+                "ID": "21027"
+              },
+              "Worker_Descriptor": "Noah Pierce"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="employees" format="json">
+      <types:shape format="weave" example="examples/employees.json"><![CDATA[%dw 2.0
+
+type employees = Array<{|  FirstName: String,   LastName: String,   Username: String,   Email: String,   CommunityNickname: String|}> {"example": "[{\"FirstName\":\"Amy\",\"LastName\":\"Evans1459483743612\",\"Username\":\"AmyEva@sf.com\",\"Email\":\"john.doe@aol.com\",\"CommunityNickname\":\"john.doe@aol.com\"},{\"FirstName\":\"TEST_Bruce\",\"LastName\":\"Willis\",\"Username\":\"TESWil@sf.com\",\"Email\":\"john.smith329@noname.com\",\"CommunityNickname\":\"john.smith329@noname.com\"},{\"FirstName\":\"TEST_Logan\",\"LastName\":\"McNeil\",\"Username\":\"TESMcN@sf.com\",\"Email\":\"example2@gmai.com\",\"CommunityNickname\":\"example2@gmai.com\"},{\"FirstName\":\"Drew\",\"LastName\":\"Littlefield\",\"Username\":\"DreLit@sf.com\",\"Email\":\"drew.littlefield@mulesoft.com\",\"CommunityNickname\":\"drew.littlefield@mulesoft.com\"},{\"FirstName\":\"Sergio\",\"LastName\":\"Moreno\",\"Username\":\"SerMor@sf.com\",\"Email\":\"sergio.moreno@mulesoft.com\",\"CommunityNickname\":\"sergio.moreno@mulesoft.com\"}]"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="xmlformat" format="java">
+      <types:shape format="raml"><![CDATA[#%RAML 1.0 DataType
+type: string]]></types:shape>
+    </types:type>
+    <types:type name="person" format="json">
+      <types:shape format="weave" example="person.json"><![CDATA[%dw 2.0
+
+type person = {|
+  employee_first_name: String, 
+  employee_last_name: String, 
+  employee_id: Number {"typeId": "int"}, 
+  employee_user_name: String, 
+  project: {|
+    project_number: Number {"typeId": "int"}, 
+    project_leader: String, 
+    PRODUCT_TYPE: String, 
+    SPONSOR_MARKING: String, 
+    portfolio_name: String, 
+    sensitivity: String, 
+    creators: String, 
+    fiscal_year: Number {"typeId": "int"}, 
+    contact_person: String, 
+    creator_ids: String
+  |}, 
+  address: {|
+    country: String, 
+    region: String
+  |}, 
+  position: String, 
+  manager: String, 
+  skills: Array<String>
+|} {"example": "{\\\"employee_first_name\\\":\\\"EXAMPLE\\\",\\\"employee_last_name\\\":\\\"LAST_NAME\\\",\\\"employee_id\\\":1234,\\\"employee_user_name\\\":\\\"elname\\\",\\\"project\\\":{\\\"project_number\\\":12345,\\\"project_leader\\\":\\\"pleader\\\",\\\"PRODUCT_TYPE\\\":\\\"TEST\\\",\\\"SPONSOR_MARKING\\\":\\\"TEST\\\",\\\"portfolio_name\\\":\\\"TEST\\\",\\\"sensitivity\\\":\\\"TEST\\\",\\\"creators\\\":\\\"TEST\\\",\\\"fiscal_year\\\":20,\\\"contact_person\\\":\\\"TEST\\\",\\\"creator_ids\\\":\\\"123,456\\\"},\\\"address\\\":{\\\"country\\\":\\\"USA\\\",\\\"region\\\":\\\"Maine\\\"},\\\"position\\\":\\\"engineer\\\",\\\"manager\\\":\\\"J. Doe\\\",\\\"skills\\\":[\\\"TEST\\\",\\\"TEST2\\\"]}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="workday" format="json">
+      <types:shape format="weave" example="workday.json"><![CDATA[%dw 2.0
+
+type workday = {|
+  Worker: {|
+    Worker_Data: {|
+      Worker_ID: String, 
+      User_ID: String, 
+      Personal_Data: {|
+        Name_Data: {|
+          Legal_Name_Data: {|
+            Name_Detail_Data: {|
+              Country_Reference: {| ID: String |}, 
+              First_Name: String, 
+              Last_Name: String
+            |}
+          |}, 
+          Preferred_Name_Data: {|
+            Name_Detail_Data: {|
+              Country_Reference: {| ID: String |}, 
+              First_Name: String, 
+              Last_Name: String
+            |}
+          |}
+        |}, 
+        Hispanic_or_Latino: String, 
+        Contact_Data: {|
+          Address_Data: {|
+            Country_Reference: {| ID: String |}, 
+            Last_Modified: String, 
+            Address_Line_Data: String, 
+            Municipality: String, 
+            Country_Region_Reference: {| ID: String |}, 
+            Country_Region_Descriptor: String, 
+            Postal_Code: String, 
+            Usage_Data: {| Type_Data: {| Type_Reference: {| ID: String |} |} |}, 
+            Number_of_Days: String, 
+            Address_Reference: {| ID: String |}, 
+            Address_ID: String
+          |}, 
+          Phone_Data: {|
+            Country_ISO_Code: String, 
+            International_Phone_Code: String, 
+            Phone_Number: String, 
+            Phone_Device_Type_Reference: {| ID: String |}, 
+            Usage_Data: {| Type_Data: {| Type_Reference: {| ID: String |} |} |}, 
+            Phone_Reference: {| ID: String |}, 
+            ID: String
+          |}, 
+          Email_Address_Data: {|
+            Email_Address: String, 
+            Usage_Data: {| Type_Data: {| Type_Reference: {| ID: String |} |} |}, 
+            Email_Reference: {| ID: String |}, 
+            ID: String
+          |}
+        |}, 
+        Tobacco_Use: String
+      |}, 
+      Employment_Data: {|
+        Worker_Job_Data: {|
+          Position_Data: {|
+            Position_Reference: {| ID: String |}, 
+            Position_ID: String, 
+            Position_Title: String, 
+            Business_Title: String, 
+            Start_Date: String, 
+            Worker_Type_Reference: {| ID: String |}, 
+            Position_Time_Type_Reference: {| ID: String |}, 
+            Job_Exempt: String, 
+            Scheduled_Weekly_Hours: String, 
+            Default_Weekly_Hours: String, 
+            Working_Time_Value: String, 
+            Full_Time_Equivalent_Percentage: String, 
+            Exclude_from_Headcount: String, 
+            Pay_Rate_Type_Reference: {| ID: String |}, 
+            Job_Classification_Summary_Data: {|
+              Job_Classification_Reference: {| ID: String |}, 
+              Job_Group_Reference: {| ID: String |}
+            |}, 
+            Federal_Withholding_FEIN: String, 
+            Worker_Compensation_Code_Data: {|
+              Workers_Compensation_Code_Reference: {| ID: String |}, 
+              Workers_Compensation_Code: String
+            |}, 
+            Job_Profile_Summary_Data: {|
+              Job_Profile_Reference: {| ID: String |}, 
+              Job_Exempt: String, 
+              Management_Level_Reference: {| ID: String |}, 
+              Job_Family_Reference: {| ID: String |}, 
+              Job_Profile_Name: String, 
+              Work_Shift_Required: String, 
+              Critical_Job: String, 
+              Difficulty_to_Fill_Reference: {| ID: String |}
+            |}, 
+            Business_Site_Summary_Data: {|
+              Location_Reference: {| ID: String |}, 
+              Name: String, 
+              Location_Type_Reference: {| ID: String |}, 
+              Local_Reference: {| ID: String |}, 
+              Time_Profile_Reference: {| ID: String |}, 
+              Scheduled_Weekly_Hours: String, 
+              Address_Data: {|
+                Country_Reference: {| ID: String |}, 
+                Last_Modified: String, 
+                Address_Line_Data: String, 
+                Municipality: String, 
+                Country_Region_Reference: {| ID: String |}, 
+                Country_Region_Descriptor: String, 
+                Postal_Code: String, 
+                Usage_Data: {|
+                  Type_Data: {| Type_Reference: {| ID: String |} |}, 
+                  Use_For_Reference: {| ID: String |}, 
+                  Use_For_Tenanted_Reference: {| ID: String |}
+                |}, 
+                Number_of_Days: String, 
+                Address_Reference: {| ID: String |}, 
+                Address_ID: String
+              |}
+            |}, 
+            Manager_as_of_last_detected_manager_change_Reference: {| ID: String |}
+          |}, 
+          Position_Management_Chains_Data: {|
+            Position_Supervisory_Management_Chain_Data: {|
+              Management_Chain_Data: {|
+                Organization_Reference: {| ID: String |}, 
+                Manager_Reference: {| ID: String |}, 
+                Manager: {|
+                  Worker_Reference: {| ID: String |}, 
+                  Worker_Descriptor: String
+                |}
+              |}
+            |}
+          |}
+        |}, 
+        Worker_Status_Data: {|
+          Active: String, 
+          Active_Status_Date: String, 
+          Hire_Date: String, 
+          Original_Hire_Date: String, 
+          Hire_Reason_Reference: {| ID: String |}, 
+          Continuous_Service_Date: String, 
+          First_Day_of_Work: String, 
+          Retired: String, 
+          Seniority_Date: String, 
+          Days_Unemployed: String, 
+          Months_Continuous_Prior_Employment: String, 
+          Terminated: String, 
+          Not_Eligible_for_Hire: String, 
+          Regrettable_Termination: String, 
+          Not_Eligible_for_Rehire: String, 
+          Hire_Rescinded: String, 
+          Not_Returning: String, 
+          Return_Unknown: String, 
+          Rehire: String
+        |}, 
+        International_Assignment_Summary_Data: {|
+          Has_International_Assignment: String, 
+          Home_Country_Reference: {| ID: String |}
+        |}
+      |}, 
+      Management_Chain_Data: {|
+        Worker_Supervisory_Management_Chain_Data: {|
+          Management_Chain_Data: {|
+            Organization_Reference: {| ID: String |}, 
+            Manager_Reference: {| ID: String |}, 
+            Manager: {|
+              Worker_Reference: {| ID: String |}, 
+              Worker_Descriptor: String
+            |}
+          |}
+        |}
+      |}
+    |}
+  |}
+|} {"example": "{\\\"Worker\\\":{\\\"Worker_Data\\\":{\\\"Worker_ID\\\":\\\"35414\\\",\\\"User_ID\\\":\\\"twillis\\\",\\\"Personal_Data\\\":{\\\"Name_Data\\\":{\\\"Legal_Name_Data\\\":{\\\"Name_Detail_Data\\\":{\\\"Country_Reference\\\":{\\\"ID\\\":\\\"840\\\"},\\\"First_Name\\\":\\\"TEST_Bruce\\\",\\\"Last_Name\\\":\\\"Willis\\\"}},\\\"Preferred_Name_Data\\\":{\\\"Name_Detail_Data\\\":{\\\"Country_Reference\\\":{\\\"ID\\\":\\\"840\\\"},\\\"First_Name\\\":\\\"TEST_Bruce\\\",\\\"Last_Name\\\":\\\"Willis\\\"}}},\\\"Hispanic_or_Latino\\\":\\\"0\\\",\\\"Contact_Data\\\":{\\\"Address_Data\\\":{\\\"Country_Reference\\\":{\\\"ID\\\":\\\"840\\\"},\\\"Last_Modified\\\":\\\"2019-12-18T11:53:37.148-08:00\\\",\\\"Address_Line_Data\\\":\\\"MainStreet 1\\\",\\\"Municipality\\\":\\\"Beverly Hills\\\",\\\"Country_Region_Reference\\\":{\\\"ID\\\":\\\"CA\\\"},\\\"Country_Region_Descriptor\\\":\\\"California\\\",\\\"Postal_Code\\\":\\\"90210\\\",\\\"Usage_Data\\\":{\\\"Type_Data\\\":{\\\"Type_Reference\\\":{\\\"ID\\\":\\\"HOME\\\"}}},\\\"Number_of_Days\\\":\\\"0\\\",\\\"Address_Reference\\\":{\\\"ID\\\":\\\"ADDRESS_REFERENCE-6-7526\\\"},\\\"Address_ID\\\":\\\"ADDRESS_REFERENCE-6-7526\\\"},\\\"Phone_Data\\\":{\\\"Country_ISO_Code\\\":\\\"USA\\\",\\\"International_Phone_Code\\\":\\\"1\\\",\\\"Phone_Number\\\":\\\"653-4555\\\",\\\"Phone_Device_Type_Reference\\\":{\\\"ID\\\":\\\"1063.5\\\"},\\\"Usage_Data\\\":{\\\"Type_Data\\\":{\\\"Type_Reference\\\":{\\\"ID\\\":\\\"HOME\\\"}}},\\\"Phone_Reference\\\":{\\\"ID\\\":\\\"PHONE_REFERENCE-6-7164\\\"},\\\"ID\\\":\\\"PHONE_REFERENCE-6-7164\\\"},\\\"Email_Address_Data\\\":{\\\"Email_Address\\\":\\\"john.smith329@noname.com\\\",\\\"Usage_Data\\\":{\\\"Type_Data\\\":{\\\"Type_Reference\\\":{\\\"ID\\\":\\\"HOME\\\"}}},\\\"Email_Reference\\\":{\\\"ID\\\":\\\"EMAIL_REFERENCE-6-49579\\\"},\\\"ID\\\":\\\"EMAIL_REFERENCE-6-49579\\\"}},\\\"Tobacco_Use\\\":\\\"0\\\"},\\\"Employment_Data\\\":{\\\"Worker_Job_Data\\\":{\\\"Position_Data\\\":{\\\"Position_Reference\\\":{\\\"ID\\\":\\\"P-23410\\\"},\\\"Position_ID\\\":\\\"P-23410\\\",\\\"Position_Title\\\":\\\"Engineer\\\",\\\"Business_Title\\\":\\\"Engineer\\\",\\\"Start_Date\\\":\\\"2017-02-27-08:00\\\",\\\"Worker_Type_Reference\\\":{\\\"ID\\\":\\\"Regular\\\"},\\\"Position_Time_Type_Reference\\\":{\\\"ID\\\":\\\"Full_time\\\"},\\\"Job_Exempt\\\":\\\"1\\\",\\\"Scheduled_Weekly_Hours\\\":\\\"40\\\",\\\"Default_Weekly_Hours\\\":\\\"40\\\",\\\"Working_Time_Value\\\":\\\"0\\\",\\\"Full_Time_Equivalent_Percentage\\\":\\\"100\\\",\\\"Exclude_from_Headcount\\\":\\\"0\\\",\\\"Pay_Rate_Type_Reference\\\":{\\\"ID\\\":\\\"Salary\\\"},\\\"Job_Classification_Summary_Data\\\":{\\\"Job_Classification_Reference\\\":{\\\"ID\\\":\\\"221.3\\\"},\\\"Job_Group_Reference\\\":{\\\"ID\\\":\\\"be4f171eca7a484983b9bc530a22e594\\\"}},\\\"Federal_Withholding_FEIN\\\":\\\"99-0343105\\\",\\\"Worker_Compensation_Code_Data\\\":{\\\"Workers_Compensation_Code_Reference\\\":{\\\"ID\\\":\\\"8810\\\"},\\\"Workers_Compensation_Code\\\":\\\"8810\\\"},\\\"Job_Profile_Summary_Data\\\":{\\\"Job_Profile_Reference\\\":{\\\"ID\\\":\\\"39905\\\"},\\\"Job_Exempt\\\":\\\"1\\\",\\\"Management_Level_Reference\\\":{\\\"ID\\\":\\\"8_Individual_Contributor\\\"},\\\"Job_Family_Reference\\\":{\\\"ID\\\":\\\"OPS-Program Management\\\"},\\\"Job_Profile_Name\\\":\\\"Program Manager\\\",\\\"Work_Shift_Required\\\":\\\"0\\\",\\\"Critical_Job\\\":\\\"0\\\",\\\"Difficulty_to_Fill_Reference\\\":{\\\"ID\\\":\\\"HARD\\\"}},\\\"Business_Site_Summary_Data\\\":{\\\"Location_Reference\\\":{\\\"ID\\\":\\\"San_Francisco_site\\\"},\\\"Name\\\":\\\"San Francisco\\\",\\\"Location_Type_Reference\\\":{\\\"ID\\\":\\\"334.4\\\"},\\\"Local_Reference\\\":{\\\"ID\\\":\\\"en_US\\\"},\\\"Time_Profile_Reference\\\":{\\\"ID\\\":\\\"344.1\\\"},\\\"Scheduled_Weekly_Hours\\\":\\\"40\\\",\\\"Address_Data\\\":{\\\"Country_Reference\\\":{\\\"ID\\\":\\\"840\\\"},\\\"Last_Modified\\\":\\\"2011-06-20T13:54:02.023-07:00\\\",\\\"Address_Line_Data\\\":\\\"3939 The Embarcadero\\\",\\\"Municipality\\\":\\\"San Francisco\\\",\\\"Country_Region_Reference\\\":{\\\"ID\\\":\\\"CA\\\"},\\\"Country_Region_Descriptor\\\":\\\"California\\\",\\\"Postal_Code\\\":\\\"94111\\\",\\\"Usage_Data\\\":{\\\"Type_Data\\\":{\\\"Type_Reference\\\":{\\\"ID\\\":\\\"BUSINESS\\\"}},\\\"Use_For_Reference\\\":{\\\"ID\\\":\\\"REMIT\\\"},\\\"Use_For_Tenanted_Reference\\\":{\\\"ID\\\":\\\"COMMUNICATION_USAGE_BEHAVIOR_TENANTED-6-9\\\"}},\\\"Number_of_Days\\\":\\\"0\\\",\\\"Address_Reference\\\":{\\\"ID\\\":\\\"ADDRESS_REFERENCE-4-640\\\"},\\\"Address_ID\\\":\\\"ADDRESS_REFERENCE-4-640\\\"}},\\\"Manager_as_of_last_detected_manager_change_Reference\\\":{\\\"ID\\\":\\\"21027\\\"}},\\\"Position_Management_Chains_Data\\\":{\\\"Position_Supervisory_Management_Chain_Data\\\":{\\\"Management_Chain_Data\\\":{\\\"Organization_Reference\\\":{\\\"ID\\\":\\\"SEC_Reporting_supervisory\\\"},\\\"Manager_Reference\\\":{\\\"ID\\\":\\\"21027\\\"},\\\"Manager\\\":{\\\"Worker_Reference\\\":{\\\"ID\\\":\\\"21027\\\"},\\\"Worker_Descriptor\\\":\\\"Noah Pierce\\\"}}}}},\\\"Worker_Status_Data\\\":{\\\"Active\\\":\\\"1\\\",\\\"Active_Status_Date\\\":\\\"2017-02-27-08:00\\\",\\\"Hire_Date\\\":\\\"2017-02-27-08:00\\\",\\\"Original_Hire_Date\\\":\\\"2017-02-27-08:00\\\",\\\"Hire_Reason_Reference\\\":{\\\"ID\\\":\\\"Hire_Employee_New_Hire_Fill_Vacancy\\\"},\\\"Continuous_Service_Date\\\":\\\"2017-02-27-08:00\\\",\\\"First_Day_of_Work\\\":\\\"2017-02-27-08:00\\\",\\\"Retired\\\":\\\"0\\\",\\\"Seniority_Date\\\":\\\"2017-02-27-08:00\\\",\\\"Days_Unemployed\\\":\\\"0\\\",\\\"Months_Continuous_Prior_Employment\\\":\\\"0\\\",\\\"Terminated\\\":\\\"0\\\",\\\"Not_Eligible_for_Hire\\\":\\\"0\\\",\\\"Regrettable_Termination\\\":\\\"0\\\",\\\"Not_Eligible_for_Rehire\\\":\\\"0\\\",\\\"Hire_Rescinded\\\":\\\"0\\\",\\\"Not_Returning\\\":\\\"0\\\",\\\"Return_Unknown\\\":\\\"0\\\",\\\"Rehire\\\":\\\"0\\\"},\\\"International_Assignment_Summary_Data\\\":{\\\"Has_International_Assignment\\\":\\\"0\\\",\\\"Home_Country_Reference\\\":{\\\"ID\\\":\\\"840\\\"}}},\\\"Management_Chain_Data\\\":{\\\"Worker_Supervisory_Management_Chain_Data\\\":{\\\"Management_Chain_Data\\\":{\\\"Organization_Reference\\\":{\\\"ID\\\":\\\"SEC_Reporting_supervisory\\\"},\\\"Manager_Reference\\\":{\\\"ID\\\":\\\"21027\\\"},\\\"Manager\\\":{\\\"Worker_Reference\\\":{\\\"ID\\\":\\\"21027\\\"},\\\"Worker_Descriptor\\\":\\\"Noah Pierce\\\"}}}}}}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="oracle" format="json">
+      <types:shape format="weave" example="oracle.json"><![CDATA[%dw 2.0
+
+type oracle = {|
+  SPONSOR_MARKING: String, 
+  PRODUCT_TYPE: String, 
+  PROJECT_NUMBER: String, 
+  PROJECT_LEADER: String, 
+  AUTHOR: String, 
+  SKILL_TAGS: Array<String>, 
+  PORTFOLIO_NAME: String, 
+  SENSITIVITY: String, 
+  PROJECT_TAGS: String, 
+  USERNAME: String
+|} {"example": "{\\\"SPONSOR_MARKING\\\":\\\"FOUO\\\",\\\"PRODUCT_TYPE\\\":\\\"Formal Sponsor Deliverable\\\",\\\"PROJECT_NUMBER\\\":\\\"07194432\\\",\\\"PROJECT_LEADER\\\":\\\"cready\\\",\\\"AUTHOR\\\":\\\"James,Sally; Brown,Paul\\\",\\\"SKILL_TAGS\\\":[\\\"systems engineering\\\",\\\"systems analysis\\\",\\\"pmp certified\\\",\\\"systems integration\\\",\\\"business architecture\\\",\\\"organizational change management (ocm)\\\",\\\"business analysis\\\",\\\"cloud adoption\\\",\\\"process improvement\\\",\\\"program management\\\",\\\"strategic and operational planning\\\",\\\"requirements analysis\\\",\\\"cost analysis\\\",\\\"business process modeling (bpmn)\\\",\\\"user experience\\\",\\\"system design\\\",\\\"information management\\\",\\\"project management\\\",\\\"business process engineering\\\",\\\"infrastructure engineering and management\\\",\\\"rfp and source selection support\\\",\\\"tableau\\\",\\\"cloud acquisition\\\"],\\\"PORTFOLIO_NAME\\\":\\\"Defense\\\",\\\"SENSITIVITY\\\":\\\"Moderate Sensitivity\\\",\\\"PROJECT_TAGS\\\":\\\"cyber acquisition\\\",\\\"USERNAME\\\":\\\"twillis\\\"}"}
+
+]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#1ee47b93-a730-4185-aa38-95b203078974">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="employees"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#51757891-6805-4020-8fd2-8daea2213307">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="employees"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#5f5d7acc-2a5a-4ea7-b851-37db582df4fe">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="workday"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#e00129b0-94bc-47db-90c5-4c94a0b4ab40">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="oracle"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+  <types:enrichment select="#2c74e3c8-be81-4cc3-b753-ea10fe0041ab">
+    <types:processor-declaration>
+      <types:output-event>
+        <types:message>
+          <types:payload type="person"/>
+        </types:message>
+      </types:output-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>

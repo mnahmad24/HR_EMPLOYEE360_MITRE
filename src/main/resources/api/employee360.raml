@@ -1,0 +1,114 @@
+#%RAML 1.0
+title: Get Person
+mediaType:
+  - application/json
+version: "1.0"
+protocols:
+  - HTTP
+
+traits:
+  client-id-required:
+    headers:
+      client_id:
+        type: string
+      client_secret:
+        type: string
+    responses:
+      401:
+        description: Unauthorized, The client_id or client_secret are not valid or the client does not have access.
+      429:
+        description: The client used all of it's request quota for the current period.
+      500:
+        description: An error ocurred, see the specific message (Only if it is a WSDL enpoint).
+      503:
+        description: Contracts Information Unreachable.
+
+/mitre1:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:
+
+/mitre2:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:     
+
+/employee/{employee_id}:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:
+            
+/mobile/getPerson/{employee_id}:
+  is:
+    client-id-required:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:
+
+/getSPProject:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:
+
+/workers/{employee_id}:
+  get:
+    responses:
+     "200":
+        body:
+          application/json:
+                                    
+
+
+/getPerson/{employee_id}:
+  get:
+    is:
+      - client-id-required:
+        
+    displayName: Get Mitre Employee
+    responses:
+      "200":
+        body:
+          application/json:
+            
+            example:
+              
+              strict: true
+              value:
+                employee_user_name: elname
+                employee_id: 1234
+                employee_last_name: LAST_NAME
+                project:
+                  sensitivity: TEST
+                  project_leader: pleader
+                  project_number: 12345
+                  PRODUCT_TYPE: TEST
+                  portfolio_name: TEST
+                  creator_ids: 123,456
+                  creators: TEST
+                  SPONSOR_MARKING: TEST
+                  fiscal_year: 20
+                  contact_person: TEST
+                employee_first_name: EXAMPLE
+                manager: J. Doe
+                address:
+                  country: USA
+                  region: Maine
+                skills:
+                  - TEST
+                  - TEST2
+                position: engineer
+            type: object
+    securedBy: []
+securitySchemes:
+  SecurityScheme:
+    type: OAuth 1.0
